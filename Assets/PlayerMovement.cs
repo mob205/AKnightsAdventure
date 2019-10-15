@@ -23,13 +23,16 @@ public class PlayerMovement : MonoBehaviour {
     private void ProcessMovement()
     {
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
-        transform.position = transform.position + movement *(playerSpeed / 10) * Time.deltaTime;
+        transform.position = transform.position + movement * playerSpeed * Time.deltaTime;
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         if(Math.Abs(movement.magnitude) > 0)
         {
             animator.SetBool("IsMoving", true);
+
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
         }
         else
         {
