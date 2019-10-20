@@ -6,10 +6,12 @@ using System;
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float playerSpeed = 5;
+    [SerializeField] float attackCD = 0.5f;
 
-    Animator animator;
-    Rigidbody2D rb;
-    bool canMove = true;
+    private Animator animator;
+    private Rigidbody2D rb;
+    private bool canMove = true;
+    private bool canAttack = true;
 	// Use this for initialization
 	void Start () {
         animator = GetComponentInChildren<Animator>();
@@ -46,18 +48,26 @@ public class PlayerMovement : MonoBehaviour {
     }
     private void ProcessAttacks()
     {
-        if (Input.GetMouseButton(0))
+        if(!canAttack) { return; }
+        if (Input.GetMouseButtonDown(0))
         {
             canMove = false;
+            canAttack = false;
             animator.SetTrigger("Attack");
+            StartCoroutine(AllowAttack());
         }
     }
     void StopAnimation()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("AttackBackward"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             canMove = true;
             animator.SetTrigger("StopAnimation");
         }
+    }
+    IEnumerator AllowAttack()
+    {
+        yield return new WaitForSeconds(attackCD);
+        canAttack = true;
     }
 }
