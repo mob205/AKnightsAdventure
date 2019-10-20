@@ -8,10 +8,11 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float playerSpeed = 5;
 
     Animator animator;
-
+    Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -23,7 +24,8 @@ public class PlayerMovement : MonoBehaviour {
     private void ProcessMovement()
     {
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
-        transform.position = transform.position + movement * playerSpeed * Time.deltaTime;
+        //transform.position = transform.position + movement * playerSpeed * Time.deltaTime;
+        rb.velocity = new Vector2(movement.x * playerSpeed, movement.y * playerSpeed);
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
