@@ -20,6 +20,10 @@ public class DummyController : MonoBehaviour
     }
     void Damage()
     {
-        animator.Play("Damaged");
+        animator.SetTrigger("OnDamage");
+    }
+    void StopAnimation()
+    {
+        animator.SetTrigger("StopAnimation");
     }
 }

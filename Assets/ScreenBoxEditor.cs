@@ -30,14 +30,8 @@ public class ScreenBoxEditor : MonoBehaviour
         var min = _collider.bounds.min;
         var max = _collider.bounds.max;
         Vector2[] points = new Vector2[] { min, new Vector2(min.x, max.y), max, new Vector2(max.x, min.y) };
-        foreach(Vector2 point in points)
-        {
-            Debug.Log(string.Format("Max Point: {0}, {1} | Min Point: {2}, {3}", max.x, max.y, min.x, min.y));
-            Debug.Log(point);
-        }
         for(int i = 0; i < points.Length-1; i++)
         {
-            Debug.Log(points[i]);
             Gizmos.DrawLine(transform.TransformPoint(points[i]), transform.TransformPoint(points[i + 1]));
         }
         Gizmos.DrawLine(transform.TransformPoint(points[points.Length - 1]), transform.TransformPoint(points[0]));

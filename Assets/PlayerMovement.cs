@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 
     Animator animator;
     Rigidbody2D rb;
+    bool canMove = true;
 	// Use this for initialization
 	void Start () {
         animator = GetComponentInChildren<Animator>();
@@ -19,10 +20,12 @@ public class PlayerMovement : MonoBehaviour {
 	void Update ()
     {
         ProcessMovement();
+        ProcessAttacks();
     }
 
     private void ProcessMovement()
     {
+        if (!canMove) { rb.velocity = Vector2.zero; return; }
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
         //transform.position = transform.position + movement * playerSpeed * Time.deltaTime;
         rb.velocity = new Vector2(movement.x * playerSpeed, movement.y * playerSpeed);
@@ -39,6 +42,22 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             animator.SetBool("IsMoving", false);
+        }
+    }
+    private void ProcessAttacks()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            canMove = false;
+            animator.SetTrigger("Attack");
+        }
+    }
+    void StopAnimation()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("AttackBackward"))
+        {
+            canMove = true;
+            animator.SetTrigger("StopAnimation");
         }
     }
 }
