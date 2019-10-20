@@ -9,14 +9,17 @@ public class DummyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Damage();
-        }
     }
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            Damage();
+        }
     }
     void Damage()
     {
