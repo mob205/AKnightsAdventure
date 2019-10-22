@@ -28,9 +28,9 @@ public class PlayerMovement : MonoBehaviour {
     private void ProcessMovement()
     {
         if (!canMove) { rb.velocity = Vector2.zero; return; }
-        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
-        //transform.position = transform.position + movement * playerSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f).normalized;
         rb.velocity = new Vector2(movement.x * playerSpeed, movement.y * playerSpeed);
+        Debug.Log(rb.velocity.magnitude);
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
