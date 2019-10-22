@@ -33,7 +33,9 @@ public class CameraController : MonoBehaviour {
 
         //gameObject.transform.position = new Vector3(x, y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, transform.position.z), smoothing);
-
-        
+    }
+    public void ChangeView(BoxCollider2D newView)
+    {
+        viewBox = newView;
     }
 }
