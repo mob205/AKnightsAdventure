@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDisabler : MonoBehaviour
+public class OnStartRoomDisabler : MonoBehaviour
 {
-    public Level startingRoom;
+    public Room startingRoom;
 
     void Start()
     {
-        Level[] rooms = FindObjectsOfType<Level>();
-        foreach(Level room in rooms)
+        Room[] rooms = FindObjectsOfType<Room>();
+        foreach(Room room in rooms)
         {
             if(room != startingRoom)
             {

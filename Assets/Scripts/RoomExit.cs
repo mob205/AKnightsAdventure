@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class RoomExit : MonoBehaviour
 {
     [SerializeField] Vector2 playerChange;
 
     public float disableDelay;
-    public Level currentLevel;
-    public Level nextLevel;
-    
+    public Room currentRoom;
+    public Room nextRoom;
+
+    private PlaceCard placeCard;
     private new CameraController camera;
 
     private void Start()
     {
+        placeCard = FindObjectOfType<PlaceCard>();
         camera = FindObjectOfType<CameraController>();
     }
 
@@ -22,14 +27,18 @@ public class RoomExit : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             LoadLevels();
-            camera.ChangeView(nextLevel.cameraBounds);
+            camera.ChangeView(nextRoom.cameraBounds);
             collision.transform.position += (Vector3)playerChange;
         }
     }
     void LoadLevels()
     {
-        nextLevel.Enable();
-        currentLevel.Disable(disableDelay);
+        nextRoom.Enable();
+        currentRoom.Disable(disableDelay);
+        if(currentRoom.roomName != nextRoom.roomName)
+        {
+            placeCard.Activate(nextRoom.roomName);
+        }
     }
 }
 

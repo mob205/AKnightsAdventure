@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class Room : MonoBehaviour
 {
     public BoxCollider2D cameraBounds;
-
     private bool hasEnabled;
+    public string roomName;
 
     public void Enable()
     {

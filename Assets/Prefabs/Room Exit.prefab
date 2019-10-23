@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6368519165649126375}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 8, z: 0}
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebcbb76eb9f11a343b0961b0263b90c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerChange: {x: 0, y: 2}
-  disableDelay: 1
-  currentLevel: {fileID: 0}
-  nextLevel: {fileID: 0}
+  playerChange: {x: 0, y: -3}
+  disableDelay: 0.75
+  currentRoom: {fileID: 0}
+  nextRoom: {fileID: 0}
