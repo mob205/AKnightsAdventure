@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if(!inRange) { return; }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && dialogBox.inDialog == false)
         {
             dialogBox.PlayDialog(text);
         }

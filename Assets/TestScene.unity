@@ -3995,7 +3995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff477b626374844e8c7d53186569dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  printSpeed: 20
   displayText: {fileID: 120542098}
+  inDialog: 0
 --- !u!1 &386594879
 GameObject:
   m_ObjectHideFlags: 0
@@ -13637,6 +13639,11 @@ PrefabInstance:
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 181996803}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: text
+      value: This will be a longer message as to test how the dialog box responds
+        to longer messages. :)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
 --- !u!1001 &5364363494081247743
