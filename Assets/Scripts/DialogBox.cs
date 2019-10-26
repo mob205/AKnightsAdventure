@@ -8,7 +8,9 @@ public class DialogBox : MonoBehaviour
     [SerializeField] int printSpeed = 10;
     [SerializeField] TextMeshProUGUI displayText;
 
-    public bool inDialog;
+    [HideInInspector] public bool inDialog;
+
+    private bool isSkippable;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +19,28 @@ public class DialogBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape) && isSkippable)
+        {
+            FinishDialog();
+        }
     }
-    public void PlayDialog(string text)
+    public void PlayDialog(string[] dialogs, bool skippable)
     {
+        isSkippable = skippable;
         gameObject.SetActive(true);
         displayText.text = "";
         Time.timeScale = 0;
         inDialog = true;
-        StartCoroutine("DisplayByChar", text);
+        StartCoroutine("DisplayStrings", dialogs);
+    }
+    IEnumerator DisplayStrings(string[] dialogs)
+    {
+        foreach(string dialog in dialogs)
+        {
+            yield return StartCoroutine("DisplayByChar", dialog);
+            displayText.text = "";
+        }
+        FinishDialog();
     }
     IEnumerator DisplayByChar(string text)
     {
@@ -38,7 +53,6 @@ public class DialogBox : MonoBehaviour
         {
             yield return null;
         }
-        FinishDialog();
     }
     private void FinishDialog()
     {

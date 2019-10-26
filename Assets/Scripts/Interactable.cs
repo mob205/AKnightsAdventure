@@ -5,9 +5,10 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [TextArea]
-    public string text;
+    public string[] dialogs;
 
     [SerializeField] DialogBox dialogBox;
+    [SerializeField] bool skippable;
     private bool inRange;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class Interactable : MonoBehaviour
         if(!inRange) { return; }
         if (Input.GetKeyDown(KeyCode.E) && dialogBox.inDialog == false)
         {
-            dialogBox.PlayDialog(text);
+            dialogBox.PlayDialog(dialogs, skippable);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
