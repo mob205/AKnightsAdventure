@@ -8,17 +8,24 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float attackCD = 0.5f;
 
+    [HideInInspector]
+    public static PlayerMovement instance;
+
     private Animator animator;
     private Rigidbody2D rb;
     private bool canMove = true;
     private bool canAttack = true;
-	// Use this for initialization
-	void Start () {
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    void Start () {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
+
 	void Update ()
     {
         ProcessMovement();

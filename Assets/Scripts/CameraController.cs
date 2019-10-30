@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour {
     [SerializeField] BoxCollider2D viewBox;
     [SerializeField] float smoothing = 0.1f;
 
-    GameObject player;
+    PlayerMovement player;
     Camera _camera;    
     void Start () {
-        player = GameObject.FindWithTag("Player");
+        player = PlayerMovement.instance;
         _camera = gameObject.GetComponent<Camera>();
     }
 
