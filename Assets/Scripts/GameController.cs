@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    enum States
+    {
+
+    }
 
     public static GameController instance;
 

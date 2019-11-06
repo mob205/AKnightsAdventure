@@ -10,6 +10,11 @@ public class PlayerHealth : MonoBehaviour
 
     public HeartUI[] hearts;
 
+    public delegate void OnHealDelegate(int health);
+    public delegate void OnDamageDelegate(int health);
+    public static event OnHealDelegate OnHeal;
+    public static event OnDamageDelegate OnDamage;
+
     public static int baseHealth = 40;
     static int health;
     static int maxHealth;
@@ -30,14 +35,23 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            TestDamage();
+            Damage(10);
         }
     }
 
-    void TestDamage()
+    public void Damage(int amount)
     {
-        health -= 10;
-        CalculateHeartUI();
+        health -= amount;
+        if (health <= 0)
+        {
+            //initiate death sequence.
+        }
+        if(OnDamage != null) { OnDamage(health); }
+    }
+    public void Heal(int amount)
+    {
+        health = Mathf.Clamp(health + amount, 0, maxHealth);
+        if (OnHeal != null) { OnHeal(health); }
     }
 
     void CalculateHeartUI()
@@ -45,7 +59,6 @@ public class PlayerHealth : MonoBehaviour
         var maxHearts = Math.Ceiling((decimal)maxHealth / 4);
         int remainder;
         var fullHearts = Math.DivRem(health, 4, out remainder);
-        Debug.Log(health + ", " + maxHearts + ", " + remainder + ", " + fullHearts);
         for(int i = 0; i < hearts.Length; i++)
         {
             if (fullHearts > 0)
