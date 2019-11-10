@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
     private bool hasEnabled;
     public string roomName;
 
+    bool isDisabling;
     public void Enable()
     {
         hasEnabled = true;
@@ -19,7 +20,9 @@ public class Room : MonoBehaviour
     }
     public void Disable(float delay)
     {
+        if (isDisabling) { return; }
         StartCoroutine(delayedDisable(delay));
+        isDisabling = true;
     }
     IEnumerator delayedDisable(float delay)
     {
