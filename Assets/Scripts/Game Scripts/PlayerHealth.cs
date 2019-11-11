@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public static event OnHealDelegate OnHeal;
     public static event OnDamageDelegate OnDamage;
 
-    public static int baseHealth = 40;
+    public int baseHealth = 40;
     static int health;
     static int maxHealth;
 

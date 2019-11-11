@@ -4067,6 +4067,20 @@ MonoBehaviour:
   - {fileID: 1871582940}
   - {fileID: 365922594}
   - {fileID: 939601122}
+  baseHealth: 40
+--- !u!114 &279751852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279751846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bfbfbc491d41e4cb9ede0fd0b3ea6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCD: 0.5
 --- !u!1001 &365922592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14414,7 +14428,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123300936051839408}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -14440,9 +14454,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.017296255, y: 0.11525297}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.42510492
 --- !u!114 &1242110075861926177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14469,27 +14483,30 @@ GameObject:
   - component: {fileID: 2123300936051839409}
   m_Layer: 0
   m_Name: Dark Shadow
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &2123300936051839409
-CircleCollider2D:
+--- !u!114 &2123300936051839409
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123300936051839408}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23ceda32f9dee548bd8c957b5994c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 40
+  enemyName: Dark Shadow
+  movementSpeed: 3
+  attack: 10
+  aggroRange: 4
+  attackRange: 2
+  attackRadius: 1
 --- !u!4 &2123300936051839414
 Transform:
   m_ObjectHideFlags: 0
@@ -14515,7 +14532,7 @@ Animator:
   m_GameObject: {fileID: 2123300936670553458}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66d6082e80f27b149861007ab08546b5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -14551,7 +14568,7 @@ GameObject:
   - component: {fileID: 2123300936670553456}
   - component: {fileID: 1242110075861926177}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Dark Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

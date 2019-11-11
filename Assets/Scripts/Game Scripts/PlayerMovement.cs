@@ -6,7 +6,6 @@ using System;
 public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float playerSpeed = 5;
-    [SerializeField] float attackCD = 0.5f;
 
     [HideInInspector]
     public static PlayerMovement instance;
@@ -14,7 +13,6 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
     private Rigidbody2D rb;
     private bool canMove = true;
-    private bool canAttack = true;
 
     private void Awake()
     {
@@ -29,7 +27,11 @@ public class PlayerMovement : MonoBehaviour {
 	void Update ()
     {
         ProcessMovement();
-        ProcessAttacks();
+    }
+
+    public void ToggleMove(bool moveability)
+    {
+        canMove = moveability;
     }
 
     private void ProcessMovement()
@@ -52,29 +54,5 @@ public class PlayerMovement : MonoBehaviour {
         {
             animator.SetBool("IsMoving", false);
         }
-    }
-    private void ProcessAttacks()
-    {
-        if(!canAttack) { return; }
-        if (Input.GetMouseButtonDown(0))
-        {
-            canMove = false;
-            canAttack = false;
-            animator.SetTrigger("Attack");
-            StartCoroutine(AllowAttack());
-        }
-    }
-    void StopAnimation()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            canMove = true;
-            animator.SetTrigger("StopAnimation");
-        }
-    }
-    IEnumerator AllowAttack()
-    {
-        yield return new WaitForSeconds(attackCD);
-        canAttack = true;
     }
 }
