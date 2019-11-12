@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     [Header("AI")]
     public int aggroRange;
     public int attackRange;
-    public int attackRadius;
 
 
 

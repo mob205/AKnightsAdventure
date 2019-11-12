@@ -47,11 +47,13 @@ public class PlayerHealth : MonoBehaviour
             //initiate death sequence.
         }
         if(OnDamage != null) { OnDamage(health); }
+        CalculateHeartUI();
     }
     public void Heal(int amount)
     {
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         if (OnHeal != null) { OnHeal(health); }
+        CalculateHeartUI();
     }
 
     void CalculateHeartUI()

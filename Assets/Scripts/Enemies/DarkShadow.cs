@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class DarkShadow : Enemy
 {
+    public int attackRadius;
+
     PlayerMovement player;
     bool isAggro;
     Vector3 defaultPos;
+    Animator animator;
+
+    Vector3 movementDir;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         player = PlayerMovement.instance;
         defaultPos = transform.position;
     }
@@ -34,23 +40,74 @@ public class DarkShadow : Enemy
     }
     void Move()
     {
-        if (!isAggro)
+        if (isAggro)
         {
-            Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
-            return;
-        }
-        if(Vector3.Distance(player.transform.position, transform.position) <= attackRadius)
+            if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
+            {
+                Attack();
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+                movementDir = (player.transform.position - transform.position).normalized;
+
+                animator.SetBool("IsMoving", true);
+            }
+        } else if (!isAggro)
         {
-            Attack();
+            if(defaultPos != transform.position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
+                movementDir = (defaultPos - transform.position).normalized;
+                animator.SetBool("IsMoving", true);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
         }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-        }
+        animator.SetBool("IsAggro", isAggro);
+        animator.SetFloat("Horizontal", movementDir.x);
+        animator.SetFloat("Vertical", movementDir.y);
+
+
+
+    //    if (!isAggro && !(defaultPos == transform.position))
+    //    {
+    //        transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
+    //        movementDir = (defaultPos - transform.position).normalized;
+
+    //        animator.SetBool("IsMoving", true);
+    //        animator.SetBool("IsAggro", false);
+    //        animator.SetFloat("Horizontal", movementDir.x);
+    //        animator.SetFloat("Vertical", movementDir.y);
+    //        return;
+    //    }
+    //    else if (!isAggro)
+    //    {
+    //        animator.SetBool("IsMoving", false);
+    //        animator.SetBool("IsAggro", false);
+    //        return;
+    //    }
+    //    if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
+    //    {
+    //        Attack();
+    //    }
+    //    else
+    //    {
+    //        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+    //        movementDir = (player.transform.position - transform.position).normalized;
+
+    //        animator.SetFloat("Horizontal", movementDir.x);
+    //        animator.SetFloat("Vertical", movementDir.y);
+    //        animator.SetBool("IsMoving", true);
+    //        animator.SetBool("IsAggro", true);
+    //    }
     }
     void Attack()
     {
-
+        Debug.Log(string.Format("Damaging player by {0}", attack));
+        //PlayerHealth.instance.Damage(attack);
     }
 
 }
