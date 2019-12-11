@@ -10,21 +10,25 @@ public class DarkShadow : Enemy
     bool isAggro;
     Vector3 defaultPos;
     Animator animator;
+    Rigidbody2D rb;
 
     Vector3 movementDir;
+    bool canMove = true;
+    bool canAttack = true;
 
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
         player = PlayerMovement.instance;
         defaultPos = transform.position;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         CheckAggro();
         Move();
-        Debug.Log(defaultPos);
+
     }
 
     void CheckAggro()
@@ -40,6 +44,7 @@ public class DarkShadow : Enemy
     }
     void Move()
     {
+        if (!canMove) { rb.velocity = Vector2.zero; return; }
         if (isAggro)
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
@@ -48,66 +53,57 @@ public class DarkShadow : Enemy
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
                 movementDir = (player.transform.position - transform.position).normalized;
+                rb.velocity = movementDir * movementSpeed;
 
                 animator.SetBool("IsMoving", true);
             }
         } else if (!isAggro)
         {
-            if(defaultPos != transform.position)
+            if (defaultPos != transform.position)
             {
-                transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
                 movementDir = (defaultPos - transform.position).normalized;
                 animator.SetBool("IsMoving", true);
+                rb.velocity = movementDir * movementSpeed;
             }
             else
             {
                 animator.SetBool("IsMoving", false);
             }
         }
+
         animator.SetBool("IsAggro", isAggro);
         animator.SetFloat("Horizontal", movementDir.x);
         animator.SetFloat("Vertical", movementDir.y);
-
-
-
-    //    if (!isAggro && !(defaultPos == transform.position))
-    //    {
-    //        transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
-    //        movementDir = (defaultPos - transform.position).normalized;
-
-    //        animator.SetBool("IsMoving", true);
-    //        animator.SetBool("IsAggro", false);
-    //        animator.SetFloat("Horizontal", movementDir.x);
-    //        animator.SetFloat("Vertical", movementDir.y);
-    //        return;
-    //    }
-    //    else if (!isAggro)
-    //    {
-    //        animator.SetBool("IsMoving", false);
-    //        animator.SetBool("IsAggro", false);
-    //        return;
-    //    }
-    //    if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
-    //    {
-    //        Attack();
-    //    }
-    //    else
-    //    {
-    //        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-    //        movementDir = (player.transform.position - transform.position).normalized;
-
-    //        animator.SetFloat("Horizontal", movementDir.x);
-    //        animator.SetFloat("Vertical", movementDir.y);
-    //        animator.SetBool("IsMoving", true);
-    //        animator.SetBool("IsAggro", true);
-    //    }
     }
     void Attack()
     {
-        Debug.Log(string.Format("Damaging player by {0}", attack));
-        //PlayerHealth.instance.Damage(attack);
+        if (!canAttack) { return; }
+        canMove = false;
+        animator.SetTrigger("Attack");
+        canAttack = false;
+        StartCoroutine(AllowAttack());
     }
-
+    IEnumerator AllowAttack()
+    {
+        yield return new WaitForSeconds(attackCD);
+        canAttack = true;
+    }
+    void StopAnimation()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Damaged"))
+        {
+            animator.SetTrigger("StopAnimation");
+            canMove = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            Debug.Log("Enemy taken damage.");
+        }
+    }
 }
