@@ -14378,6 +14378,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c8a1bda277c75c143a88b85f68329d88, type: 2}
+    - target: {fileID: 885984801801898240, guid: 3aa4fad934780634986ccbbb71193a6f,
+        type: 3}
+      propertyPath: playerSpeed
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
 --- !u!1001 &928825528323122804
@@ -14567,11 +14572,12 @@ MonoBehaviour:
   enemyName: Dark Shadow
   movementSpeed: 3
   attack: 10
-  knockback: 0
+  knockback: 15
+  kbDuration: 0.1
   attackCD: 0.65
   aggroRange: 6
   attackRange: 1
-  attackRadius: 2
+  movementDir: {x: 0, y: 0, z: 0}
 --- !u!4 &2123300936051839414
 Transform:
   m_ObjectHideFlags: 0

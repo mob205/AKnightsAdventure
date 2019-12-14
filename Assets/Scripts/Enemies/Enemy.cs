@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float movementSpeed;
     public int attack;
     public int knockback;
+    public float kbDuration;
     public float attackCD;
 
     [Header("AI")]

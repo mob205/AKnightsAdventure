@@ -27,9 +27,11 @@ public class PlayerCombat : MonoBehaviour
     private void ProcessAttacks()
     {
         if (!canAttack) { return; }
+        if (PlayerMovement.instance.isKnockbacked) { return; }
         if (Input.GetMouseButtonDown(0))
         {
             PlayerMovement.instance.ToggleMove(false);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             canAttack = false;
             animator.SetTrigger("Attack");
             StartCoroutine(AllowAttack());
@@ -42,6 +44,11 @@ public class PlayerCombat : MonoBehaviour
             PlayerMovement.instance.ToggleMove(true);
             animator.SetTrigger("StopAnimation");
         }
+    }
+    public void ReceiveAttack(int damage, Vector2 knockback, float duration)
+    {
+        PlayerHealth.instance.Damage(damage);
+        PlayerMovement.instance.Knockback(knockback, duration);
     }
     IEnumerator AllowAttack()
     {

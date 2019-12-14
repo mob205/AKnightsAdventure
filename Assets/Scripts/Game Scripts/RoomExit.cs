@@ -34,8 +34,8 @@ public class RoomExit : MonoBehaviour
     void LoadLevels()
     {
         nextRoom.Enable();
-        currentRoom.Disable(disableDelay);
-        if(currentRoom.roomName != nextRoom.roomName)
+        //currentRoom.Disable(disableDelay);
+        if (currentRoom.roomName != nextRoom.roomName)
         {
             placeCard.Activate(nextRoom.roomName);
         }

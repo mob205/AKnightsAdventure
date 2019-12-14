@@ -14,10 +14,6 @@ public class Room : MonoBehaviour
         hasEnabled = true;
         gameObject.SetActive(true);
     }
-    public void Disable()
-    {
-        gameObject.SetActive(false);
-    }
     public void Disable(float delay)
     {
         if (isDisabling) { return; }
@@ -28,7 +24,11 @@ public class Room : MonoBehaviour
     {
         hasEnabled = false;
         yield return new WaitForSeconds(delay);
-        if (!hasEnabled) { gameObject.SetActive(false); }
+        if (!hasEnabled)
+        {
+            gameObject.SetActive(false);
+        }
+        isDisabling = false;
         
     }
 }

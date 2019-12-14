@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DarkShadow : Enemy
 {
-    public int attackRadius;
 
     PlayerMovement player;
     bool isAggro;
@@ -12,7 +11,7 @@ public class DarkShadow : Enemy
     Animator animator;
     Rigidbody2D rb;
 
-    Vector3 movementDir;
+    public Vector3 movementDir;
     bool canMove = true;
     bool canAttack = true;
 
@@ -61,7 +60,7 @@ public class DarkShadow : Enemy
             }
         } else if (!isAggro)
         {
-            if (defaultPos != transform.position)
+            if (Vector3.Distance(transform.position, defaultPos) > 1f)
             {
                 //transform.position = Vector3.MoveTowards(transform.position, defaultPos, movementSpeed * Time.deltaTime);
                 movementDir = (defaultPos - transform.position).normalized;
@@ -71,6 +70,7 @@ public class DarkShadow : Enemy
             else
             {
                 animator.SetBool("IsMoving", false);
+                rb.velocity = Vector3.zero;
             }
         }
 
