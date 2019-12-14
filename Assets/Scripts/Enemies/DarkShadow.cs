@@ -15,6 +15,9 @@ public class DarkShadow : Enemy
     bool canMove = true;
     bool canAttack = true;
 
+    bool isKnockbacked;
+    float knockbackDuration;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -29,7 +32,11 @@ public class DarkShadow : Enemy
         Move();
 
     }
-
+    void ToggleMove(bool moveability)
+    {
+        if (isKnockbacked) { return; }
+        canMove = moveability;
+    }
     void CheckAggro()
     {
         if (Vector3.Distance(player.transform.position, transform.position) <= aggroRange)
@@ -43,7 +50,7 @@ public class DarkShadow : Enemy
     }
     void Move()
     {
-        if (!canMove) { rb.velocity = Vector2.zero; return; }
+        if (!canMove) { return; }
         if (isAggro)
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
@@ -81,7 +88,9 @@ public class DarkShadow : Enemy
     void Attack()
     {
         if (!canAttack) { return; }
+        if (isKnockbacked) { return; }
         canMove = false;
+        rb.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
         canAttack = false;
         StartCoroutine(AllowAttack());
@@ -99,11 +108,45 @@ public class DarkShadow : Enemy
             canMove = true;
         }
     }
+    void Knockback(Vector2 knockback, float duration)
+    {
+        if (isKnockbacked) { Debug.Log("is already knockbacked"); return; }
+
+        knockbackDuration = duration;
+        StartCoroutine("ApplyKnockback", knockback);
+    }
+    IEnumerator ApplyKnockback(Vector2 knockback)
+    {
+        ToggleMove(false);
+        isKnockbacked = true;
+
+        rb.velocity = Vector2.zero;
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        animator.SetBool("IsDamaged", true);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        animator.SetBool("IsDamaged", false);
+
+        isKnockbacked = false;
+        ToggleMove(true);
+    }
+    void Damage(int amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Debug.Log("Enemy has died");
+            //initiate death sequence.
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerAttack"))
         {
-            Debug.Log("Enemy taken damage.");
+            Damage(PlayerCombat.instance.damage);
+            Knockback((transform.position - player.transform.position).normalized * PlayerCombat.instance.knockback, 1f);
         }
     }
 }

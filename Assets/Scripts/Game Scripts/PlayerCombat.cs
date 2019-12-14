@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] float attackCD = 0.5f;
-    [SerializeField] int damage = 5;
-    [SerializeField] int knockback = 5;
+
+    public float knockback = 10f;
+    public int damage = 5;
 
     [HideInInspector]
     public static PlayerCombat instance;

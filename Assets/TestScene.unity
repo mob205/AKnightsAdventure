@@ -3752,6 +3752,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08294008c1b72d948bbfeb6082c35788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &122018911
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 952120960}
+    m_Modifications:
+    - target: {fileID: 4454340684833791916, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_Name
+      value: Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.493956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.581053
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 181996803}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: skippable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.data[0]
+      value: Adventurer, beware!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.data[1]
+      value: Evil monsters and shadows inhabit this land.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.data[2]
+      value: Their powers and abilities vary greatly, but it seems that the ones here
+        are rather weak.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.data[3]
+      value: They can cloak themselves in dark energy and explode, so keep your distance!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939582016, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+      propertyPath: dialogs.Array.data[4]
+      value: Stay safe out there. - The Slayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0df92d83e418ce74e879cb6fbb94632d, type: 3}
+--- !u!4 &122018912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5365772128064535633, guid: 0df92d83e418ce74e879cb6fbb94632d,
+    type: 3}
+  m_PrefabInstance: {fileID: 122018911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141910647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4081,8 +4189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCD: 0.5
-  damage: 5
   knockback: 5
+  damage: 5
 --- !u!1001 &365922592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10276,6 +10384,7 @@ Transform:
   - {fileID: 104497715}
   - {fileID: 1035658269}
   - {fileID: 414754549}
+  - {fileID: 122018912}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14303,7 +14412,7 @@ PrefabInstance:
     - target: {fileID: 885984801801898241, guid: 3aa4fad934780634986ccbbb71193a6f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 885984801801898241, guid: 3aa4fad934780634986ccbbb71193a6f,
         type: 3}
@@ -14355,8 +14464,36 @@ PrefabInstance:
       value: PlayerAttack
       objectReference: {fileID: 0}
     - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: -0.0062096417
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: -0.38909483
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 0.5183241
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: -0.17639089
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 0.55744165
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104252016, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: 0.41702652
       objectReference: {fileID: 0}
     - target: {fileID: 467580449, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
       propertyPath: m_TagString
@@ -14381,7 +14518,7 @@ PrefabInstance:
     - target: {fileID: 885984801801898240, guid: 3aa4fad934780634986ccbbb71193a6f,
         type: 3}
       propertyPath: playerSpeed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa4fad934780634986ccbbb71193a6f, type: 3}
@@ -14500,8 +14637,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 999
-  m_LinearDrag: 0
+  m_Mass: 1
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
