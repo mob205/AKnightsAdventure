@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     static int health;
     static int maxHealth;
 
+    public bool canDie;
+
     private void Awake()
     {
         instance = this;        
@@ -38,13 +40,13 @@ public class PlayerHealth : MonoBehaviour
             Damage(10);
         }
     }
-
     public void Damage(int amount)
     {
         health -= amount;
-        if (health <= 0)
+        if (health <= 0 && canDie)
         {
-            //initiate death sequence.
+            
+            PlayerCombat.instance.isDead = true;
         }
         if(OnDamage != null) { OnDamage(health); }
         CalculateHeartUI();

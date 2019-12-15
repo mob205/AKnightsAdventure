@@ -29,6 +29,7 @@ public class DarkShadow : Enemy
 
     void Update()
     {
+        if (PlayerCombat.instance.isDead) { return; }
         CheckAggro();
         Move();
         if (Input.GetKeyDown(KeyCode.Z))
@@ -54,8 +55,7 @@ public class DarkShadow : Enemy
     }
     void Move()
     {
-        if(isDead) { return; }
-        if (!canMove) { return; }
+        if (isDead || !canMove) { return; }
         if (isAggro)
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
@@ -93,7 +93,8 @@ public class DarkShadow : Enemy
     void StartDeath()
     {
         rb.velocity = Vector2.zero;
-        animator.SetBool("IsDead", true);
+        //animator.SetBool("IsDead", true);
+        animator.SetTrigger("OnDeath");
     }
     void Attack()
     {

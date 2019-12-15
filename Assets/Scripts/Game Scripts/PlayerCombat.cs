@@ -12,8 +12,12 @@ public class PlayerCombat : MonoBehaviour
     [HideInInspector]
     public static PlayerCombat instance;
 
+
     private Animator animator;
     private bool canAttack = true;
+
+    [HideInInspector]
+    public bool isDead;
 
     void Start()
     {
@@ -45,6 +49,11 @@ public class PlayerCombat : MonoBehaviour
             PlayerMovement.instance.ToggleMove(true);
             animator.SetTrigger("StopAnimation");
         }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            Destroy(gameObject);
+            Debug.Log("Player has died");
+        }
     }
     public void ReceiveAttack(int damage, Vector2 knockback, float duration)
     {
@@ -55,5 +64,12 @@ public class PlayerCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCD);
         canAttack = true;
+    }
+    public void StartDeath()
+    {
+        animator.SetTrigger("OnDeath");
+        canAttack = false;
+        PlayerMovement.instance.ToggleMove(false);
+        
     }
 }

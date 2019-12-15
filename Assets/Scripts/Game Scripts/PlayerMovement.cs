@@ -84,5 +84,11 @@ public class PlayerMovement : MonoBehaviour {
 
         isKnockbacked = false;
         ToggleMove(true);
+
+        if (PlayerCombat.instance.isDead)
+        {
+            rb.velocity = Vector2.zero;
+            PlayerCombat.instance.StartDeath();
+        }
     }
 }

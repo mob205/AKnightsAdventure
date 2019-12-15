@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
+        if (PlayerCombat.instance.isDead) { return; }
         FollowPlayer();
 	} 
     private void FollowPlayer()
