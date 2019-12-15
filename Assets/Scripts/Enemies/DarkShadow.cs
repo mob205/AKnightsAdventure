@@ -17,6 +17,7 @@ public class DarkShadow : Enemy
 
     bool isKnockbacked;
     float knockbackDuration;
+    bool isDead;
 
     void Start()
     {
@@ -30,7 +31,10 @@ public class DarkShadow : Enemy
     {
         CheckAggro();
         Move();
-
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            StartDeath();
+        }
     }
     void ToggleMove(bool moveability)
     {
@@ -50,6 +54,7 @@ public class DarkShadow : Enemy
     }
     void Move()
     {
+        if(isDead) { return; }
         if (!canMove) { return; }
         if (isAggro)
         {
@@ -85,6 +90,11 @@ public class DarkShadow : Enemy
         animator.SetFloat("Horizontal", movementDir.x);
         animator.SetFloat("Vertical", movementDir.y);
     }
+    void StartDeath()
+    {
+        rb.velocity = Vector2.zero;
+        animator.SetBool("IsDead", true);
+    }
     void Attack()
     {
         if (!canAttack) { return; }
@@ -106,6 +116,11 @@ public class DarkShadow : Enemy
         {
             animator.SetTrigger("StopAnimation");
             canMove = true;
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+        {
+            Debug.Log("Enemy has died.");
+            Destroy(gameObject);
         }
     }
     void Knockback(Vector2 knockback, float duration)
@@ -131,14 +146,18 @@ public class DarkShadow : Enemy
 
         isKnockbacked = false;
         ToggleMove(true);
+        if (isDead)
+        {
+            StartDeath();
+        }
     }
+
     void Damage(int amount)
     {
         health -= amount;
         if (health <= 0)
         {
-            Debug.Log("Enemy has died");
-            //initiate death sequence.
+            isDead = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
