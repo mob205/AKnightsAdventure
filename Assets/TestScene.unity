@@ -4012,12 +4012,12 @@ PrefabInstance:
     - target: {fileID: 6500773399298562805, guid: 2b31871cbadb5d742851bbed2a22a06b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.86
+      value: 8.31
       objectReference: {fileID: 0}
     - target: {fileID: 6500773399298562805, guid: 2b31871cbadb5d742851bbed2a22a06b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.04
+      value: 22.76
       objectReference: {fileID: 0}
     - target: {fileID: 6500773399298562805, guid: 2b31871cbadb5d742851bbed2a22a06b,
         type: 3}
@@ -14993,6 +14993,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713873494663895166, guid: b4eaf7117b58e3c40b1951841e3b2648,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713873494484731667, guid: b4eaf7117b58e3c40b1951841e3b2648,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cdaeab40ad578184692586d406ff67ea,
+        type: 2}
+    - target: {fileID: 6713873494484731667, guid: b4eaf7117b58e3c40b1951841e3b2648,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4eaf7117b58e3c40b1951841e3b2648, type: 3}

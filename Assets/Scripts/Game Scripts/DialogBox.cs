@@ -5,6 +5,9 @@ using TMPro;
 
 public class DialogBox : MonoBehaviour
 {
+    [HideInInspector]
+    public static DialogBox instance;
+
     [SerializeField] int printSpeed = 10;
     [SerializeField] TextMeshProUGUI displayText;
 
@@ -12,9 +15,10 @@ public class DialogBox : MonoBehaviour
 
     private bool isSkippable;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        instance = this;
+        gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()

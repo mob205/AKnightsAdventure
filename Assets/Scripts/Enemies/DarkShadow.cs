@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DarkShadow : Enemy
@@ -18,6 +17,7 @@ public class DarkShadow : Enemy
     bool isKnockbacked;
     float knockbackDuration;
     bool isDead;
+    bool deathSeqStarted;
 
     void Start()
     {
@@ -98,8 +98,7 @@ public class DarkShadow : Enemy
     }
     void Attack()
     {
-        if (!canAttack) { return; }
-        if (isKnockbacked) { return; }
+        if (isKnockbacked || !canAttack) { return; }
         canMove = false;
         rb.velocity = Vector2.zero;
         animator.SetTrigger("Attack");
@@ -126,7 +125,7 @@ public class DarkShadow : Enemy
     }
     void Knockback(Vector2 knockback, float duration)
     {
-        if (isKnockbacked) { Debug.Log("is already knockbacked"); return; }
+        if (isKnockbacked) {  return; }
 
         knockbackDuration = duration;
         StartCoroutine("ApplyKnockback", knockback);
@@ -147,8 +146,10 @@ public class DarkShadow : Enemy
 
         isKnockbacked = false;
         ToggleMove(true);
+
         if (isDead)
         {
+            isKnockbacked = true;
             StartDeath();
         }
     }

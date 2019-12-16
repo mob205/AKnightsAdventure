@@ -7,13 +7,14 @@ public class Interactable : MonoBehaviour
     [TextArea]
     public string[] dialogs;
 
-    [SerializeField] DialogBox dialogBox;
+    DialogBox dialogBox;
+
     [SerializeField] bool skippable;
     private bool inRange;
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogBox = DialogBox.instance;
     }
 
     // Update is called once per frame
