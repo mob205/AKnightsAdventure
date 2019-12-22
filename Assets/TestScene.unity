@@ -13728,7 +13728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &1373623286
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14660,8 +14660,9 @@ MonoBehaviour:
   knockback: 15
   kbDuration: 0.1
   attackCD: 0.65
-  aggroRange: 6
-  attackRange: 1
+  aggroRange: 10
+  attackRange: 6
+  projectile: {fileID: 0}
 --- !u!4 &42764146690002860
 Transform:
   m_ObjectHideFlags: 0

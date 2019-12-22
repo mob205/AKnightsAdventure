@@ -11,7 +11,6 @@ public class StopAnimation : MonoBehaviour
 
     void ShootProjectile()
     {
-        Debug.Log("Tell firemage to shoot projectiles");
-        //SendMessageUpwards("ShootProjectile");
+        SendMessageUpwards("Fire");
     }
 }

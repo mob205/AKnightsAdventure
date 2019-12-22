@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FireMage : Enemy
 {
-    //[SerializeField]
-    //GameObject projectile;
+    [SerializeField]
+    GameObject projectile;
 
-    void ShootProjectile()
+    void Fire()
     {
         Debug.Log("Shoot projectile");
     }
