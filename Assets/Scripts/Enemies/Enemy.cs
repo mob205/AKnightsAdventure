@@ -78,11 +78,12 @@ public class Enemy : MonoBehaviour
             else
             {
                 //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-                movementDir = (player.transform.position - transform.position).normalized;
                 rb.velocity = movementDir * movementSpeed;
 
                 animator.SetBool("IsMoving", true);
             }
+            movementDir = (player.transform.position - transform.position).normalized;
+
         }
         else if (!isAggro)
         {

@@ -4,11 +4,30 @@ using UnityEngine;
 
 public class FireMage : Enemy
 {
-    [SerializeField]
-    GameObject projectile;
+    public int projectileSpeed;
+    public float projectileLife;
+
+    [SerializeField] Projectile projectilePrefab;
+    [SerializeField] Transform projOrigin;
+
+    bool canFire = true;
 
     void Fire()
     {
-        Debug.Log("Shoot projectile");
+        if (canFire)
+        {
+            var projectile = Instantiate(projectilePrefab, projOrigin.position, projOrigin.rotation);
+            projectile.parent = this;
+            projectile.rb.velocity = movementDir * projectileSpeed;
+            Debug.Log("X: " + movementDir.x + " Y: " + movementDir.y);
+            Destroy(projectile.gameObject, projectileLife);
+            StartCoroutine(ToggleFire());
+        }
+    }
+    IEnumerator ToggleFire()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(attackCD);
+        canFire = true;
     }
 }
