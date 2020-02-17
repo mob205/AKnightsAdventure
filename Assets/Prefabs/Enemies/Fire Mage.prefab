@@ -61,7 +61,7 @@ MonoBehaviour:
   projectileLife: 10
   projectilePrefab: {fileID: 6670408116749959127, guid: e1104bb64b8bdeb4c89243e883c265e5,
     type: 3}
-  projOrigin: {fileID: 8285566243115974546}
+  projectileOrigin: {fileID: 8285566243115974546}
 --- !u!50 &9088392833693879761
 Rigidbody2D:
   serializedVersion: 4

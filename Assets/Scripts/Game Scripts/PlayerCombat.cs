@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -70,6 +71,9 @@ public class PlayerCombat : MonoBehaviour
         animator.SetTrigger("OnDeath");
         canAttack = false;
         PlayerMovement.instance.ToggleMove(false);
-        
+    }
+    public void BuffDamage(int amount)
+    {
+        damage += amount;
     }
 }

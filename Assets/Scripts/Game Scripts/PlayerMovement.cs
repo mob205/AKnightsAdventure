@@ -91,4 +91,8 @@ public class PlayerMovement : MonoBehaviour {
             PlayerCombat.instance.StartDeath();
         }
     }
+    public void BuffMovement(int amount)
+    {
+        playerSpeed += amount;
+    }
 }

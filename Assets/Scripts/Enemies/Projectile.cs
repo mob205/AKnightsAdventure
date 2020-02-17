@@ -23,5 +23,9 @@ public class Projectile : MonoBehaviour
             PlayerCombat.instance.ReceiveAttack(parent.attack, knockback, parent.kbDuration);
             gameObject.SetActive(false);
         }
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

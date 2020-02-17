@@ -11,10 +11,12 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] bool skippable;
     private bool inRange;
+    protected SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         dialogBox = DialogBox.instance;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -23,8 +25,12 @@ public class Interactable : MonoBehaviour
         if(!inRange) { return; }
         if (Input.GetKeyDown(KeyCode.E) && dialogBox.inDialog == false)
         {
-            dialogBox.PlayDialog(dialogs, skippable);
+            Interact();
         }
+    }
+    protected virtual void Interact()
+    {
+            dialogBox.PlayDialog(dialogs, skippable);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

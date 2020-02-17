@@ -8,7 +8,7 @@ public class FireMage : Enemy
     public float projectileLife;
 
     [SerializeField] Projectile projectilePrefab;
-    [SerializeField] Transform projOrigin;
+    [SerializeField] Transform projectileOrigin;
 
     bool canFire = true;
 
@@ -16,7 +16,7 @@ public class FireMage : Enemy
     {
         if (canFire)
         {
-            var projectile = Instantiate(projectilePrefab, projOrigin.position, projOrigin.rotation);
+            var projectile = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
             projectile.parent = this;
             projectile.rb.velocity = movementDir * projectileSpeed;
             Debug.Log("X: " + movementDir.x + " Y: " + movementDir.y);
