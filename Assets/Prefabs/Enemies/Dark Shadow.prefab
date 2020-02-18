@@ -288,7 +288,7 @@ MonoBehaviour:
   health: 20
   enemyName: Dark Shadow
   movementSpeed: 3
-  attack: 10
+  attack: 5
   knockback: 15
   kbDuration: 0.1
   attackCD: 0.65

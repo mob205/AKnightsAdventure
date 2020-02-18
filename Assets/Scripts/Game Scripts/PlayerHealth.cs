@@ -16,8 +16,8 @@ public class PlayerHealth : MonoBehaviour
     public static event OnDamageDelegate OnDamage;
 
     public int baseHealth = 40;
-    static int health;
-    static int maxHealth;
+    public static int health;
+    public static int maxHealth;
 
     public bool canDie;
 
@@ -33,12 +33,11 @@ public class PlayerHealth : MonoBehaviour
         CalculateHeartUI();
     }
 
-    void Update()
+    public void IncreaseMaxHP(int amount)
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Damage(10);
-        }
+        maxHealth += amount;
+        health = maxHealth;
+        CalculateHeartUI();
     }
     public void Damage(int amount)
     {

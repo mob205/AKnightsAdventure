@@ -45,10 +45,6 @@ public class Enemy : MonoBehaviour
         if (PlayerCombat.instance.isDead) { return; }
         CheckAggro();
         Move();
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartDeath();
-        }
     }
     protected void ToggleMove(bool moveability)
     {
