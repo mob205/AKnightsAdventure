@@ -13,6 +13,13 @@ public class RoomExit : MonoBehaviour
     public Room currentRoom;
     public Room nextRoom;
 
+    public bool fadeOnChange;
+    public float fadeSpeed = 1f;
+    public float fadeDuration = 2f;
+    public float switchDuration = 0f;
+
+    public bool isDoor;
+
     private PlaceCard placeCard;
     private new CameraController camera;
 
@@ -24,21 +31,26 @@ public class RoomExit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !isDoor)
         {
-            LoadLevels();
-            camera.ChangeView(nextRoom.cameraBounds);
-            collision.transform.position += (Vector3)playerChange;
+            SwitchLevels();
         }
     }
-    void LoadLevels()
+    public void SwitchLevels()
     {
-        nextRoom.Enable();
-        //currentRoom.Disable(disableDelay);
+        if (fadeOnChange) { FadeToBlack.instance.Fade(fadeSpeed, fadeDuration); }
         if (currentRoom.roomName != nextRoom.roomName)
         {
             placeCard.Activate(nextRoom.roomName);
         }
+        StartCoroutine(DelayedLevelChange());
+        
+    }
+    IEnumerator DelayedLevelChange()
+    {
+        yield return new WaitForSeconds(switchDuration);
+        camera.ChangeView(nextRoom.cameraBounds);
+        PlayerMovement.instance.transform.position += (Vector3)playerChange;
     }
 }
 

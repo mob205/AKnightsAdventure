@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [TextArea]
-    public string[] dialogs;
-
+    [TextArea] public string[] dialogs;
     DialogBox dialogBox;
-
     [SerializeField] bool skippable;
+
+    public UnityEvent interactEvent;
+
     private bool inRange;
     protected SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
@@ -30,7 +31,14 @@ public class Interactable : MonoBehaviour
     }
     protected virtual void Interact()
     {
+        if(interactEvent != null)
+        {
+            interactEvent.Invoke();
+        }
+        if(dialogs.Length != 0)
+        {
             dialogBox.PlayDialog(dialogs, skippable);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
