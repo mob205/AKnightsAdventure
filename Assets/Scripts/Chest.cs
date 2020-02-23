@@ -13,8 +13,12 @@ public class Chest : Interactable
         if (!hasOpened)
         {
             base.Interact();
-            hasOpened = true;
-            spriteRenderer.sprite = openChest;
+            SetOpen();
         }
+    }
+    public void SetOpen()
+    {
+        hasOpened = true;
+        spriteRenderer.sprite = openChest;
     }
 }

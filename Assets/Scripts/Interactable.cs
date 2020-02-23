@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour
     [TextArea] public string[] dialogs;
     DialogBox dialogBox;
     [SerializeField] bool skippable;
+    [SerializeField] bool triggerInteract;
 
     public UnityEvent interactEvent;
 
@@ -23,7 +24,7 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!inRange) { return; }
+        if(!inRange || triggerInteract) { return; }
         if (Input.GetKeyDown(KeyCode.E) && dialogBox.inDialog == false)
         {
             Interact();
@@ -45,7 +46,9 @@ public class Interactable : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             inRange = true;
+            if (triggerInteract) { Interact(); }
         }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
