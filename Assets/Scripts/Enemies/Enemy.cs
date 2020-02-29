@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour
     [Header("AI")]
     public int aggroRange;
     public int attackRange;
-
+    public UnityEvent deathEvent;
 
     protected bool isAggro;
     protected bool canMove = true;
@@ -101,10 +102,10 @@ public class Enemy : MonoBehaviour
         animator.SetFloat("Horizontal", movementDir.x);
         animator.SetFloat("Vertical", movementDir.y);
     }
-    protected void StartDeath()
+    public void StartDeath()
     {
+        if(deathEvent != null) { deathEvent.Invoke(); }
         rb.velocity = Vector2.zero;
-        //animator.SetBool("IsDead", true);
         animator.SetTrigger("OnDeath");
     }
     protected void Attack()
