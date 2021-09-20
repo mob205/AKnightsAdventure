@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
     private Animator animator;
     private Rigidbody2D rb;
 
+    public bool hasKey;
     private bool canMove = true;
 
     [HideInInspector]
@@ -94,5 +95,10 @@ public class PlayerMovement : MonoBehaviour {
     public void BuffMovement(int amount)
     {
         playerSpeed += amount;
+    }
+    
+    public void SetKey(bool value)
+    {
+        hasKey = value;
     }
 }

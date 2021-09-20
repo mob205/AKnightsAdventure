@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     [TextArea] public string[] dialogs;
-    DialogBox dialogBox;
-    [SerializeField] bool skippable;
+    protected DialogBox dialogBox;
+    [SerializeField] protected bool skippable;
     [SerializeField] bool triggerInteract;
 
     public UnityEvent interactEvent;

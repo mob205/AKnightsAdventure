@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 467580451}
   m_Layer: 0
   m_Name: Attack Right
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1104252016}
   m_Layer: 0
   m_Name: Attack Backward
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,8 +120,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.015435904, y: 0.40594876}
       - {x: -1.0976973, y: 0.54046535}
-      - {x: -0.68811804, y: -0.16867614}
-      - {x: 0.5183241, y: -0.17639089}
+      - {x: -0.9316643, y: -0.36389816}
+      - {x: -0.025789618, y: -0.71614444}
+      - {x: 0.5924391, y: -0.26841944}
       - {x: 0.55744165, y: 0.41702652}
 --- !u!1 &1504873589
 GameObject:
@@ -135,7 +136,7 @@ GameObject:
   - component: {fileID: 1504873591}
   m_Layer: 0
   m_Name: Attack Forward
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +231,7 @@ GameObject:
   - component: {fileID: 1926137125}
   m_Layer: 0
   m_Name: Attack Left
-  m_TagString: Untagged
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,6 +292,9 @@ GameObject:
   - component: {fileID: 885984801801898240}
   - component: {fileID: 635505615}
   - component: {fileID: 635505614}
+  - component: {fileID: 279751847}
+  - component: {fileID: 279751848}
+  - component: {fileID: 279751852}
   m_Layer: 0
   m_Name: Knight of the Plainlands
   m_TagString: Player
@@ -325,8 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aadbc007b27f1bd4cb60af823bc941f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 4.5
-  attackCD: 0.5
+  playerSpeed: 10
+  hasKey: 0
+  isKnockbacked: 0
 --- !u!50 &635505615
 Rigidbody2D:
   serializedVersion: 4
@@ -357,13 +362,69 @@ CircleCollider2D:
   m_GameObject: {fileID: 885984801801898247}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c8a1bda277c75c143a88b85f68329d88, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &279751847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885984801801898247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84ca32df863d8f42a15a0b7e4765ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  baseHealth: 12
+  canDie: 0
+--- !u!114 &279751848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885984801801898247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c7eadb7d462f546bc02c54d26e6766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotionStrength: 4
+  baseHealthPotionAmount: 3
+  potionCooldown: 1
+--- !u!114 &279751852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885984801801898247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bfbfbc491d41e4cb9ede0fd0b3ea6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCD: 0.5
+  knockback: 5
+  damage: 5
+  isDead: 0
 --- !u!1 &885984802283679333
 GameObject:
   m_ObjectHideFlags: 0
