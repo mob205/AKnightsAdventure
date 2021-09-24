@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
     [HideInInspector]
     public static PlayerCombat instance;
 
-
+    private SpriteRenderer sprite;
     private Animator animator;
     private bool canAttack = true;
 
@@ -24,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     {
         instance = this;
         animator = GetComponentInChildren<Animator>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -52,7 +53,7 @@ public class PlayerCombat : MonoBehaviour
         }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Death"))
         {
-            Destroy(gameObject);
+            sprite.enabled = false;
             Debug.Log("Player has died");
         }
     }

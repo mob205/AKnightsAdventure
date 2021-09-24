@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class PlayerHealth : MonoBehaviour
     public int baseHealth = 40;
     public static int health;
     public static int maxHealth;
+    public float deathDelay;
 
     public bool canDie;
 
+    public RectTransform[] uiElements;
     private void Awake()
     {
         instance = this;        
@@ -46,9 +49,26 @@ public class PlayerHealth : MonoBehaviour
         {
             
             PlayerCombat.instance.isDead = true;
+            StartDeathSequence();
         }
         if(OnDamage != null) { OnDamage(health); }
         CalculateHeartUI();
+    }
+    public void StartDeathSequence()
+    {
+        StartCoroutine(DeathSequence());
+    }
+    public IEnumerator DeathSequence()
+    {
+        yield return new WaitForSeconds(deathDelay);
+        foreach(var element in uiElements)
+        {
+            element.gameObject.SetActive(false);
+        }
+        FadeToBlack.instance.Fade(5f, 3f);
+        Messenger.instance.Message("You Died", Color.red, 3f);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Level 1");
     }
     public void Heal(int amount)
     {

@@ -393,6 +393,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   baseHealth: 12
+  deathDelay: 2
   canDie: 0
 --- !u!114 &279751848
 MonoBehaviour:
