@@ -17,7 +17,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerAttack"))
+        {
+            gameObject.SetActive(false);
+        }
+        else if (collision.CompareTag("Player"))
         {
             var knockback = (PlayerCombat.instance.transform.position - transform.position).normalized * parent.knockback;
             PlayerCombat.instance.ReceiveAttack(parent.attack, knockback, parent.kbDuration);
