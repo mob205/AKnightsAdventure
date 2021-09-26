@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour {
             PlayerCombat.instance.StartDeath();
         }
     }
-    public void BuffMovement(int amount)
+    public void BuffMovement(float amount)
     {
         playerSpeed += amount;
     }
