@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 	}
 
-	void Update ()
+	void FixedUpdate ()
     {
         ProcessMovement();
     }
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
         if (!canMove) { return; }
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f).normalized;
         //rb.velocity = new Vector2(movement.x * playerSpeed, movement.y * playerSpeed
-        rb.MovePosition(transform.position + movement * playerSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + movement * playerSpeed * Time.fixedDeltaTime);
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
