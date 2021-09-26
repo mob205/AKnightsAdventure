@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] float attackCD = 0.5f;
+    [SerializeField] AudioSource audioSource;
 
     public float knockback = 10f;
     public int damage = 5;
@@ -42,6 +43,7 @@ public class PlayerCombat : MonoBehaviour
             canAttack = false;
             animator.SetTrigger("Attack");
             StartCoroutine(AllowAttack());
+            audioSource.Play();
         }
     }
     void StopAnimation()

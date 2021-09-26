@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     public int attackRange;
     public UnityEvent deathEvent;
 
+    [Header("Sounds")]
+    public AudioSource damageSFX;
+    public AudioSource attackSFX;
+
     protected bool isAggro;
     protected bool canMove = true;
     protected bool canAttack = true;
@@ -169,6 +173,7 @@ public class Enemy : MonoBehaviour
     protected void Damage(int amount)
     {
         health -= amount;
+        damageSFX.Play();
         if (health <= 0)
         {
             isDead = true;

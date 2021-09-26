@@ -5,6 +5,8 @@ using TMPro;
 
 public class PlayerConsumable : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+
     public int healthPotionStrength = 4;
     public int baseHealthPotionAmount = 3;
     public float potionCooldown = 2f;
@@ -37,6 +39,7 @@ public class PlayerConsumable : MonoBehaviour
         healthPotionAmount--;
         UpdateCounter();
         StartCoroutine(CooldownPotion());
+        audioSource.Play();
     }
     void UpdateCounter()
     {

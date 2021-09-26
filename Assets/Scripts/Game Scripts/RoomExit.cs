@@ -43,6 +43,7 @@ public class RoomExit : MonoBehaviour
         {
             placeCard.Activate(nextRoom.roomName);
         }
+        MusicPlayer.instance.PlayMusic(nextRoom.music);
         StartCoroutine(DelayedLevelChange());
         
     }

@@ -16,12 +16,12 @@ public class AttackHitbox : MonoBehaviour
     private void OnEnable()
     {
         canDamage = true;
+        parent.attackSFX.Play();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && canDamage) 
         {
-            
             var knockback = (PlayerCombat.instance.transform.position - transform.position).normalized * parent.knockback;
             PlayerCombat.instance.ReceiveAttack(parent.attack, knockback, parent.kbDuration);
             canDamage = false;

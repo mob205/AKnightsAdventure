@@ -19,6 +19,7 @@ public class FireMage : Enemy
             var projectile = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
             projectile.parent = this;
             projectile.rb.velocity = movementDir * projectileSpeed;
+            attackSFX.Play();
             Destroy(projectile.gameObject, projectileLife);
             StartCoroutine(ToggleFire());
         }

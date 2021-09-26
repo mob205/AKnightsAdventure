@@ -8,12 +8,20 @@ public class Chest : Interactable
 
     private bool hasOpened;
 
+    AudioSource audioSource; 
+
+    new public void Start()
+    {
+        base.Start();
+        audioSource = GetComponent<AudioSource>();
+    }
     protected override void Interact()
     {
         if (!hasOpened)
         {
             base.Interact();
             SetOpen();
+            audioSource.Play();
         }
     }
     public void SetOpen()
