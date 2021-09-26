@@ -24,7 +24,6 @@ public class MusicPlayer : MonoBehaviour
     }
     public void PlayMusic(AudioClip music)
     {
-        Debug.Log("playing some pogful music");
         if(music != currentSong)
         {
             currentSong = music;

@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [Header("Sounds")]
     public AudioSource damageSFX;
     public AudioSource attackSFX;
+    public AudioSource deathSFX;
 
     protected bool isAggro;
     protected bool canMove = true;
@@ -111,6 +112,7 @@ public class Enemy : MonoBehaviour
         if(deathEvent != null) { deathEvent.Invoke(); }
         rb.velocity = Vector2.zero;
         animator.SetTrigger("OnDeath");
+        deathSFX.Play();
     }
     protected void Attack()
     {

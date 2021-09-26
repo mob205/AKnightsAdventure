@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
 
     public HeartUI[] hearts;
+    public AudioSource poofSFX;
+    public AudioClip deathSFX;
 
     public delegate void OnHealDelegate(int health);
     public delegate void OnDamageDelegate(int health);
@@ -49,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         {
             
             PlayerCombat.instance.isDead = true;
+            poofSFX.Play();
             StartDeathSequence();
         }
         if(OnDamage != null) { OnDamage(health); }
@@ -65,9 +68,10 @@ public class PlayerHealth : MonoBehaviour
         {
             element.gameObject.SetActive(false);
         }
-        FadeToBlack.instance.Fade(5f, 3f);
-        Messenger.instance.Message("You Died", Color.red, 3f);
-        yield return new WaitForSeconds(2f);
+        FadeToBlack.instance.Fade(5f, 10f);
+        Messenger.instance.Message("You Died", Color.red, 5f);
+        MusicPlayer.instance.PlayMusic(deathSFX);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("Level 1");
     }
     public void Heal(int amount)
